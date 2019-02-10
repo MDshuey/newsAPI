@@ -1,3 +1,8 @@
+#' All I've done at this point is remove the checks for country.
+#' Naturally this means nothing will be output if a non-country-code is placed.
+#' But we've made baby steps. 
+#' -MDShuey
+#' mkearney's logs as follows:
 #' get_sources
 #'
 #' Returns news sources with meta data.
@@ -26,16 +31,17 @@ get_sources <- function(category = "",
                         apiKey = NULL,
                         parse = TRUE) {
   stopifnot(is.atomic(category), is.atomic(language))
-  if (!is.null(language)) {
-    if (!language %in% c("en", "de", "fr", "")) {
-      stop("language must be en de or fr.", call. = FALSE)
-    }
-  }
-  if (!is.null(country)) {
-    if (!country %in% c("au", "de", "gb", "in", "it", "us", "")) {
-      stop("country must be au de gb in it or us.", call. = FALSE)
-    }
-  }
+#removed... for [data] science
+  # if (!is.null(language)) {
+  #   if (!language %in% c("en", "de", "fr", "")) {
+  #     stop("language must be en de or fr.", call. = FALSE)
+  #   }
+  # }
+  # if (!is.null(country)) {
+  #   if (!country %in% c("au", "de", "gb", "in", "it", "us", "")) {
+  #     stop("country must be au de gb in it or us.", call. = FALSE)
+  #   }
+  # }
   if (is.null(apiKey)) {
     apiKey <- .NEWSAPI_KEY()
   }
