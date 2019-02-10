@@ -3,7 +3,7 @@ News API
 --------
 
 -   R client for newsAPIorg
-
+- v1 edition by mkearney, updated to v2 by MD
 API key
 -------
 
@@ -33,7 +33,7 @@ Install
 if (!"devtools" %in% installed.packages()) {
   install.packages("devtools")
 }
-devtools::install_github("mkearney/newsAPI")
+devtools::install_github("MDshuey/newsAPI")
 
 ## load package
 library(newsAPI)
