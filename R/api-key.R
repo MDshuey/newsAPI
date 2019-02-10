@@ -16,7 +16,7 @@
   ) {
     params <- paste(names(params), params, sep = "=")
     params <- paste(params, collapse = "&")
-    rurl <- paste(rurl, params, sep="&")
+    rurl <- paste(rurl, params, sep="")
   }
   rurl
 }
