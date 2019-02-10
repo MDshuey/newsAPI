@@ -3,7 +3,7 @@
 #'
 #' Returns news sources with meta data.
 #'
-#' @param source Name of news source.
+#' @param sources Names of news sources.
 #' @param sortBy Name of sorting mechanism must be one of latest, top, or popular. Certain methods
 #'   only work for certain news sources.
 #' @param apiKey Character string API token. Default is to grab it from user R environ.
@@ -15,19 +15,22 @@
 #' @importFrom httr content GET warn_for_status
 #' @return Data frame or nested list.
 #' @export
-get_articles <- function(source,
+get_articles <- function(sources, keyword=NULL,
                          sortBy = "",
                          apiKey = NULL,
                          parse = TRUE) {
-  stopifnot(is.atomic(source), length(source) == 1)
   if (!sortBy %in% c("top", "latest", "popular", "")) {
     stop("sortBy must be top, latest, or popular.", call. = FALSE)
+  }
+  if(length(sources)>20){
+    stop("sources cap in the api is currently 20. Try pulling multiple times for all sources and rbind for now. -MD")
   }
   if (is.null(apiKey)) {
     apiKey <- .NEWSAPI_KEY()
   }
-  params <- list(source = source, sortBy = sortBy, apiKey = apiKey)
-  rurl <- .makeurl(query = "articles", params)
+  params <- list(sources = paste(sources, collapse = ","), keyword = keyword, sortBy = sortBy, apiKey = apiKey)
+  rurl <- .makeurl(query = "everything", keyword = keyword, params)
+  rurl
   r <- httr::GET(rurl)
   warn_for_status(r)
   r <- httr::content(r, "parsed")
@@ -38,7 +41,8 @@ get_articles <- function(source,
   }
 }
 
-
+#' I had to adjust this function to account for source being a list of "id" and "name".
+#' Solution isn't the most elegant, but it works. -MD
 #' parse_articles
 #'
 #' Converts response object from get articles to data frame
@@ -49,7 +53,9 @@ get_articles <- function(source,
 #' @export
 parse_articles <- function(x) {
   if ("articles" %in% names(x)) {
-    source <- x[["source"]]
+    source <- lapply(x[[3]], `[[`, "source") %>%
+              lapply(`[[`, "name") %>%
+              lapply(as.character)
     sortBy <- x[["sortBy"]]
     x <- x[["articles"]]
   } else {
