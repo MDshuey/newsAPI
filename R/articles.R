@@ -23,7 +23,8 @@ get_articles <- function(sources, keyword=NULL,
     stop("sortBy must be top, latest, or popular.", call. = FALSE)
   }
   if(length(sources)>20){
-    stop("sources cap in the api is currently 20. Try pulling multiple times for all sources and rbind for now. -MD")
+    stop("sources cap in the api is currently 20. Try pulling multiple times for all sources and rbind for now. 
+         Or lapply for each source, which was how it was done in v1 of this wrapper. -MD")
   }
   if (is.null(apiKey)) {
     apiKey <- .NEWSAPI_KEY()
@@ -40,7 +41,6 @@ get_articles <- function(sources, keyword=NULL,
     r
   }
 }
-
 #' I had to adjust this function to account for source being a list of "id" and "name".
 #' Solution isn't the most elegant, but it works. -MD
 #' parse_articles
@@ -80,6 +80,9 @@ parse_articles <- function(x) {
   )
   data$source <- source
   data$sortBy <- sortBy
+  if(length(data) == 8){
   data <- data[, c(7, 6, 1, 2:5, 8)]
+  }
+  else print("Error: bad source -MD")
   data
 }
