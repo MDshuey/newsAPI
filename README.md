@@ -4,6 +4,8 @@ News API
 
 -   R client for newsAPIorg
 - v1 edition by mkearney, updated to v2 by MD
+
+
 API key
 -------
 
