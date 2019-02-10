@@ -1,5 +1,6 @@
 ## News API
 - R client for newsAPIorg
+- v1 edition by mkearney, updated to v2 by MD
 
 ## API key
 - Go to [newsapi.org](https://newsapi.org) and register to get an API
@@ -28,7 +29,7 @@ cat(
 if (!"devtools" %in% installed.packages()) {
   install.packages("devtools")
 }
-devtools::install_github("mkearney/newsAPI")
+devtools::install_github("MDshuey/newsAPI")
 
 ## load package
 library(newsAPI)
@@ -49,8 +50,8 @@ print(src, width = 500)
 
 ```{r}
 ## apply get_articles function to each news source
-df <- lapply(src$id, get_articles)
-
+df <- lapply(src.en$id[-c(42,50,53)], get_articles)
+#42, 50, 53 are dud sources, and will return an error. 
 ## collapse into single data frame
 df <- do.call("rbind", df)
 
