@@ -30,7 +30,7 @@ get_articles <- function(sources, keyword=NULL,
     apiKey <- .NEWSAPI_KEY()
   }
   params <- list(sources = paste(sources, collapse = ","), keyword = keyword, sortBy = sortBy, apiKey = apiKey)
-  rurl <- .makeurl(query = "everything", keyword = keyword, params)
+  rurl <- .makeurl(query = "everything", params, keyword = keyword)
   rurl
   r <- httr::GET(rurl)
   warn_for_status(r)
