@@ -51,7 +51,7 @@ get_sources <- function(category = "",
     country = country,
     apiKey = apiKey
   )
-  rurl <- .makeurl(query = "sources", params)
+  rurl <- .makeurl(query = "sources", keyword= NULL, params)
   r <- httr::GET(rurl)
   warn_for_status(r)
   r <- httr::content(r, "parsed")

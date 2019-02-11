@@ -15,7 +15,8 @@
 #' @importFrom httr content GET warn_for_status
 #' @return Data frame or nested list.
 #' @export
-get_articles <- function(sources, keyword=NULL,
+get_articles <- function(sources, 
+                         keyword=NULL,
                          sortBy = "",
                          apiKey = NULL,
                          parse = TRUE) {
@@ -30,7 +31,7 @@ get_articles <- function(sources, keyword=NULL,
     apiKey <- .NEWSAPI_KEY()
   }
   params <- list(sources = paste(sources, collapse = ","), keyword = keyword, sortBy = sortBy, apiKey = apiKey)
-  rurl <- .makeurl(query = "everything", params, keyword = keyword)
+  rurl <- .makeurl(query = "everything", keyword = keyword, params)
   rurl
   r <- httr::GET(rurl)
   warn_for_status(r)
