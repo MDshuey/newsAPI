@@ -1,8 +1,10 @@
 Package: newsAPI
 Title: Wrapper for newsAPIorg
-Version: 0.0.0.9000
+Version: 0.0.0.9900
 Authors@R: "Michael W. Kearney
      <mwk4z3@missouri.edu> [aut,cre]"
+     "MD Shuey 
+     <mitchellshuey@live.com> [aut]"
 Description: API wrapper for the newsAPIorg, which provides streamlined APIs for a number of news media sources. This package formulates requests and then parses and formats responses.
 Depends: R (>= 3.4.0)
 Imports:
