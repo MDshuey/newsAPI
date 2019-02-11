@@ -51,7 +51,8 @@ print(src, width = 500)
 ```{r}
 ## apply get_articles function to each news source
 df <- lapply(src.en$id[-c(42,50,53)], get_articles)
-#42, 50, 53 are dud sources, and will return an error. 
+# 42, 50, 53 are dud sources, and will return an error.
+# You can check by trying the-lad-bible, the-sport-bible, and talksport in the http input of News API
 ## collapse into single data frame
 df <- do.call("rbind", df)
 

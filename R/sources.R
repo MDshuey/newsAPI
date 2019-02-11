@@ -1,5 +1,5 @@
 #' All I've done at this point is remove the checks for country.
-#' Naturally this means nothing will be output if a non-country-code is placed.
+#' Naturally this means nothing will be a random error if a non-country-code is placed.
 #' But we've made baby steps. 
 #' -MDShuey
 #' mkearney's logs as follows:
