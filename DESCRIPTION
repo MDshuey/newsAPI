@@ -1,10 +1,10 @@
 Package: newsAPI
 Title: Wrapper for newsAPIorg
 Version: 0.0.0.9900
-Authors@R: c("Michael W. Kearney
-     <mwk4z3@missouri.edu> [aut,cre]",
-     "MD Shuey 
-     <mitchellshuey@live.com> [aut]")
+Authors@R: c(person("Michael W.", "Kearney",
+     email="mwk4z3@missouri.edu", role= c(aut,cre)),
+     person("MD", "Shuey", 
+     email= "mitchellshuey@live.com", role= "ctb"))
 Description: API wrapper for the newsAPIorg, which provides streamlined APIs for a number of news media sources. This package formulates requests and then parses and formats responses.
 Depends: R (>= 3.4.0)
 Imports:
