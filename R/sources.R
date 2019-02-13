@@ -1,8 +1,6 @@
-#' All I've done at this point is remove the checks for country.
-#' Naturally this means nothing will be a random error if a non-country-code is placed.
-#' But we've made baby steps. 
+#' Progress, slowly but surely, is developing.
 #' -MDShuey
-#' mkearney's logs as follows:
+#' mkearney's logs (with appropriate revisions) as follows:
 #' get_sources
 #'
 #' Returns news sources with meta data.
