@@ -23,8 +23,8 @@ get_articles <- function(sources=NULL,
                          pageSize = NULL,
                          apiKey = NULL,
                          parse = TRUE) {
-  if (!sortBy %in% c("top", "latest", "popular", "")) {
-    stop("sortBy must be top, latest, or popular.", call. = FALSE)
+  if (!sortBy %in% c("relevancy", "popularity", "publishedAt", "")) {
+    stop("sortBy must be relevancy, popularity, or publishedAt.", call. = FALSE)
   }
   if(from < Sys.Date() - 31){
     warning("Warning: Free API subsciptions cannot search further back than one month.")
