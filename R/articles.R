@@ -4,7 +4,7 @@
 #' Returns news sources with meta data.
 #'
 #' @param sources Names of news sources.
-#' @param sortBy Name of sorting mechanism must be one of latest, top, or popular. Certain methods
+#' @param sortBy Name of sorting mechanism must be one of relevancy, time (publishedAt), or popularity. Certain methods
 #'   only work for certain news sources.
 #' @param apiKey Character string API token. Default is to grab it from user R environ.
 #' @param parse Logical indicating whether to parse response object to data frame.
@@ -95,6 +95,6 @@ parse_articles <- function(x) {
   if(length(data) == 8){
   data <- data[, c(7, 6, 1, 2:5, 8)]
   }
-  else print("Error: bad source -MD")
+  else print("Error in function -MD")
   data
 }
