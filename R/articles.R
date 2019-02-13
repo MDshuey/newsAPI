@@ -15,13 +15,19 @@
 #' @importFrom httr content GET warn_for_status
 #' @return Data frame or nested list.
 #' @export
-get_articles <- function(sources, 
+get_articles <- function(sources=NULL, 
                          keyword=NULL,
                          sortBy = "",
+                         from = NULL, 
+                         to = NULL,
+                         pageSize = NULL,
                          apiKey = NULL,
                          parse = TRUE) {
   if (!sortBy %in% c("top", "latest", "popular", "")) {
     stop("sortBy must be top, latest, or popular.", call. = FALSE)
+  }
+  if(from < Sys.Date() - 31){
+    warning("Warning: Free API subsciptions cannot search further back than one month.")
   }
   if(length(sources)>20){
     stop("sources cap in the api is currently 20. Try pulling multiple times for all sources and rbind for now. 
@@ -30,8 +36,13 @@ get_articles <- function(sources,
   if (is.null(apiKey)) {
     apiKey <- .NEWSAPI_KEY()
   }
-  params <- list(sources = paste(sources, collapse = ","), keyword = keyword, sortBy = sortBy, apiKey = apiKey)
-  rurl <- .makeurl(query = "everything", keyword = keyword, params)
+  params <- list(sources = paste(sources, collapse = ","), 
+                 from = from,
+                 to = to,
+                 pageSize = pageSize,
+                 sortBy = sortBy, 
+                 apiKey = apiKey)
+  rurl <- .makeurl(query = "everything", keyword,  params)
   rurl
   r <- httr::GET(rurl)
   warn_for_status(r)
