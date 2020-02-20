@@ -44,6 +44,7 @@ get_sources <- function(category = "",
     apiKey <- .NEWSAPI_KEY()
   }
   params <- list(
+    queryInTitle = Queery
     category = category,
     language = language,
     country = country,
